@@ -5,6 +5,13 @@
   <artifactId>isolator4j</artifactId>
   <version>0.1.1-SNAPSHOT</version>
   <name>Isolator4j</name>
+  <url>https://github.com/ishubin/isolator4j</url>
+
+  <scm>
+    <connection>scm:git:ssh://git@github.com/ishubin/isolator4j.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/ishubin/isolator4j.git</developerConnection>
+    <url>git@github.com/ishubin/isolator4j.git</url>
+  </scm>
 
   <dependencies>
     <dependency>
@@ -101,11 +108,64 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>disable-java8-doclint</id>
+      <activation>
+        <jdk>[1.8,)</jdk>
+      </activation>
+      <properties>
+        <additionalparam>-Xdoclint:none</additionalparam>
+      </properties>
+    </profile>
+  </profiles>
+
+
+  <repositories>
+    <repository>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>${sonatypeOssDistMgmtSnapshotsUrl}</url>
+    </snapshotRepository>
+    <repository>
+      <id>sonatype-nexus-staging</id>
+      <name>Nexus Release Repository</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+
   <licenses>
     <license>
-      <name>Apache 2</name>
+      <name>The Apache Software License, Version 2.0</name>
       <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
       <distribution>manual</distribution>
     </license>
   </licenses>
+
+  <developers>
+    <developer>
+      <id>ishubin</id>
+      <name>Ivan Shubin</name>
+      <url>https://github.com/ishubin</url>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+        <role>tester</role>
+      </roles>
+    </developer>
+  </developers>
 </project>
